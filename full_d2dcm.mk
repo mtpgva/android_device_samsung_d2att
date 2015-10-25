@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
- 
+
 #
 # This file is the build configuration for a full Android
 # build for maguro hardware. This cleanly combines a set of
@@ -20,15 +20,20 @@
 # details, it only fundamentally contains two inherit-product
 # lines, full and maguro, hence its name.
 #
- 
+
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-# Inherit from d2att device
-$(call inherit-product, device/samsung/d2att/device.mk)
+# Inherit from d2dcm device
+$(call inherit-product, device/samsung/d2dcm/device.mk)
+
+# d2dcm audio
+PRODUCT_COPY_FILES += \
+    device/samsung/d2dcm/audio/snd_soc_msm_2x:system/etc/snd_soc_msm/snd_soc_msm_2x \
+		device/samsung/d2dcm/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := full_d2att
-PRODUCT_DEVICE := d2att
+PRODUCT_NAME := full_d2dcm
+PRODUCT_DEVICE := d2dcm
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := SAMSUNG-SGH-I747
+PRODUCT_MODEL := SAMSUNG-Sc06d
